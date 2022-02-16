@@ -19,7 +19,7 @@ pipeline{
                                    echo "version is ${version}"
                                    echo "artifactId is ${artifactId}"
                                    echo "groupId is ${groupId}"
-				   log4j_version = ${pom.dependencies.dependency.version}
+				   log4j_version = ${pom.dependencies[0].version}
 				    echo "LOG4J is ${log4j_grooupID}"
 			    }
 		    }
