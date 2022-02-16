@@ -4,6 +4,7 @@ pipeline{
     stages{
         stage('SCM Checkout') {
             steps{
+		cleanWs()    
                 git branch: 'main', url: 'https://github.com/chaksamu/pom.git'
 		echo "SCM Checkout Success"
             }
