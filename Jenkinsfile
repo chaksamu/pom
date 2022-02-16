@@ -11,7 +11,7 @@ pipeline{
                 groupId = pom.groupId
               
               echo "version is ${version}"
-              echo "artifactId is ${artifactId}
+              echo "artifactId is ${artifactId}"
               echo "groupId is ${groupId}"
             }
         }
