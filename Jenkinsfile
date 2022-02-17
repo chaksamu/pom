@@ -30,9 +30,9 @@ pipeline{
 				    def m = logv.split('.')[0]
 				    def n = logv.split('.')[1]
 				    def p = logv.split('.')[2]
-				    echo "Major_Version is $m"
-				    echo "Minor_Version is $n"
-				    echo "Patch_Version is $p"
+				    echo "Major_Version is " m
+				    echo "Minor_Version is " n
+				    echo "Patch_Version is " p
 			    }
 		    }
 	    }
