@@ -25,11 +25,12 @@ pipeline{
 				    String log4j_ver = pom.dependencies[0].version
 				    echo "LOG4J is ${log4j_ver}"
 				    
-				   def (major, minor, patch) = log4j_ver.split('.') 
+				    def logv = pom.dependencies[0].version
+				    echo "version is logv"
 				    
-				    echo "Major_Version is ${major}"
-				    echo "Minor_Version is ${minor}"
-				    echo "Patch_Version is ${patch}"
+				    echo "Major_Version is logv.split('.')[0]"
+				    echo "Minor_Version is logv.split('.')[1]"
+				    echo "Patch_Version is logv.split('.')[2]"
 			    }
 		    }
 	    }
