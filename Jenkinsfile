@@ -27,9 +27,7 @@ pipeline{
 				    
 				    def logv = pom.dependencies[0].version
 				    echo "version is " + logv
-				    def m = logv.split('.')[0]
-				    def n = logv.split('.')[1]
-				    def p = logv.split('.')[2]
+				    def(m,n,p) = logv.tokenize('.')
 				    echo "Major_Version is " + m
 				    echo "Minor_Version is " + n
 				    echo "Patch_Version is " + p
