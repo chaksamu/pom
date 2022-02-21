@@ -32,7 +32,7 @@ pipeline{
 				    echo "Minor_Version is " + n
 				    echo "Patch_Version is " + p
 				    
-				    if (m > 1) && ( n >= 17){
+				    if (m > 1 && n >= 17){
 				    	println ("log4j version is valid")
 				    }
 				    else {
