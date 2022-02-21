@@ -22,26 +22,25 @@ pipeline{
                echo "SCM Checkout Success"
            } 
         }
-    }
-    stage('Read Pom.xml'){
-        steps{
-            script {
-                pom = readMavenPom file: './pom.xml'
-                version = pom.version
-                artifactId = pom.artifactId
-                groupId = pom.groupId
-                for (i in pom.dependencies){
-                    println(i)
-                    FindLog4jversion(i)
-                }
-                for (j in pom.dependencyManagement){
-                    println(j)
-                    for (k in j.dependencies) {
-                        println(k)
-                        FindLog4jversion(k)
+        stage('Read Pom.xml'){
+            steps{
+                script {
+                   pom = readMavenPom file: './pom.xml'
+                  version = pom.version
+                  artifactId = pom.artifactId
+                 groupId = pom.groupId
+                 for (i in pom.dependencies){
+                     println(i)
+                     FindLog4jversion(i)
+                 }
+                    for (j in pom.dependencyManagement){
+                        println(j)
+                        for (k in j.dependencies) {}
+                            println(k)
+                          FindLog4jversion(k)
+                        }
                     }
                 }
             }
         }
-    }
 }
