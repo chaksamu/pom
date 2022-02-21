@@ -69,6 +69,7 @@ pipeline{
 					for (k in j.dependencies) {
 						print(k)
 						println(k.groupId)
+						FindLog4jversion(k)
 					}
 					//println(j.groupId)
 						//FindLog4jversion(j)
