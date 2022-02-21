@@ -38,6 +38,23 @@ pipeline{
 				    else {
 				    	println ("log version is not valid")
 				    }
+				    
+				    for (i in pom.dependencies){
+					    if (i.groupId contains 'log4j'){
+						    def logver = i.version
+						    println ("version is "+ logver)
+						    def (int q, int r, int s) = logver.tokenize('.')
+						    println ("Major_Version is " + q)
+						    println ("Major_Version is " + r)
+						    println ("Major_Version is " + s)
+						    if (q > 1 && r >= 17){
+							    println ("log4j version is valid")
+						    	}
+				    		    else {
+				    			    println ("log version is not valid")
+							  }						
+					    }
+				    }
 					   
 			    }
 		    }
