@@ -1,3 +1,20 @@
+def FindLog4jversion(i){
+	if (i.groupId.contains('log4j')){
+		def logver = i.version
+		println ("Step6: version is "+ logver)
+		def (int q, int r, int s) = logver.tokenize('.')
+		println ("Major_Version is " + q)
+		println ("Major_Version is " + r)
+		println ("Major_Version is " + s)
+		if (q > 1 && r >= 17){
+			println ("Step7:log4j version is valid " + logver)
+		}		
+		else {
+			println ("Step8:log version is not valid "+ logver)
+		}						
+	}
+}
+
 pipeline{
     agent any 
     
@@ -42,21 +59,9 @@ pipeline{
 				    for (i in pom.dependencies){
 					    println(i)
 					    println(i.groupId)
-					    //if ('log4j' in i.groupId){
-					    if (i.groupId.contains('log4j')){
-						    def logver = i.version
-						    println ("Step6: version is "+ logver)
-						    def (int q, int r, int s) = logver.tokenize('.')
-						    println ("Major_Version is " + q)
-						    println ("Major_Version is " + r)
-						    println ("Major_Version is " + s)
-						    if (q > 1 && r >= 17){
-							    println ("Step7:log4j version is valid " + logver)
-						    	}
-				    		    else {
-				    			    println ("Step8:log version is not valid "+ logver)
-							  }						
-					    }
+					    //if ('log4j' in i.groupId)
+						FindLog4jversion(i)
+
 				    }
 					   
 			    }
