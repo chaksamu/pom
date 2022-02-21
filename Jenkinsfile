@@ -64,9 +64,9 @@ pipeline{
 
 				    }
 				   // try{
-				    for (j in pom.dependencyManagement[0]){
+				    for (j in pom.dependencyManagement){
 				    	println(j)
-					println(j.groupId)
+					//println(j.groupId)
 						//FindLog4jversion(j)
 				    }
 				    //}catch(Exception exp){
