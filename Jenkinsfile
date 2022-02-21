@@ -40,6 +40,7 @@ pipeline{
 				    }
 				    
 				    for (i in pom.dependencies){
+					    println(i)
 					    if ('log4j' in i.groupId){
 						    def logver = i.version
 						    println ("Step6: version is "+ logver)
