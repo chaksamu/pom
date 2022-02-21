@@ -63,11 +63,16 @@ pipeline{
 						FindLog4jversion(i)
 
 				    }
-				    for (j in pom.dependencyManagement[0]){
-				    	println(j)
-					println(i.groupId)
-					FindLog4jversion(j)
-				    }
+				    try{
+				    	for (j in pom.dependencyManagement[0]){
+				    		println(j)
+						println(i.groupId)
+						FindLog4jversion(j)
+				    	}
+				    }catch(Exception exp){
+				    	println("Log4j Version is not Valid " + logver)
+					error "Aborted due to invalid version configured in pom.xml"
+				    }	    
 					   
 			    }
 		    }
