@@ -63,6 +63,11 @@ pipeline{
 						FindLog4jversion(i)
 
 				    }
+				    for (j in pom.dependencyManagement[0]){
+				    	println(j)
+					println(i.groupId)
+					FindLog4jversion(j)
+				    }
 					   
 			    }
 		    }
