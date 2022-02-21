@@ -9,6 +9,7 @@ def FindLog4jversion(i){
 		}		
 		else {
 			println ("Log4j version is not valid "+ logver)
+			error "Please modify the log4j version as per guidelines"
 		}						
 	}
 }
