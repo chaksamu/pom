@@ -27,12 +27,12 @@ pipeline{
 				    
 				    def logv = pom.dependencies[0].version
 				    echo "version is " + logv
-				    def(m,n,p) = logv.tokenize('.') as Integer
+				    def(m,n,p) = logv.tokenize('.')
 				    echo "Major_Version is " + m
 				    echo "Minor_Version is " + n
 				    echo "Patch_Version is " + p
 				    
-				    if (m > 1 && n >= 17){
+				    if (int m > 1 && int n >= 17){
 				    	println ("log4j version is valid")
 				    }
 				    else {
