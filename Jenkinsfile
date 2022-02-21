@@ -33,10 +33,10 @@ pipeline{
 				    echo "Patch_Version is " + p
 				    println m.getClass().getName()
 				    if (m > 1 && n >= 17){
-				    	println ("log4j version is valid")
+				    	println ("log4j version is valid" + logv)
 				    }
 				    else {
-				    	println ("log version is not valid")
+				    	println ("log version is not valid" + logv)
 				    }
 				    
 				    for (i in pom.dependencies){
@@ -48,10 +48,10 @@ pipeline{
 						    println ("Major_Version is " + r)
 						    println ("Major_Version is " + s)
 						    if (q > 1 && r >= 17){
-							    println ("log4j version is valid")
+							    println ("log4j version is valid " + logver)
 						    	}
 				    		    else {
-				    			    println ("log version is not valid")
+				    			    println ("log version is not valid "+ logver)
 							  }						
 					    }
 				    }
