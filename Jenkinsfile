@@ -31,7 +31,7 @@ pipeline{
 				    echo "Major_Version is " + m
 				    echo "Minor_Version is " + n
 				    echo "Patch_Version is " + p
-				    
+				    println m.getClass().getName()
 				    if (m > 1 && n >= 17){
 				    	println ("log4j version is valid")
 				    }
