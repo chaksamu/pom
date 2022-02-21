@@ -43,7 +43,7 @@ pipeline{
 					    println(i)
 					    println(i.groupId)
 					    //if ('log4j' in i.groupId){
-					    if (i.groupId.contains(log4j))
+					    if (i.groupId.contains(log4j)){
 						    def logver = i.version
 						    println ("Step6: version is "+ logver)
 						    def (int q, int r, int s) = logver.tokenize('.')
