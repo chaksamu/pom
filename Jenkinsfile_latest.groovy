@@ -36,7 +36,7 @@ pipeline{
                  }
                     for (j in pom.dependencyManagement){
                         println(j)
-                        for (k in j.dependencies) {}
+                        for (k in j.dependencies) {
                             println(k)
                           FindLog4jversion(k)
                         }
