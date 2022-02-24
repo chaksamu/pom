@@ -4,7 +4,7 @@ def FindLog4jversion(i){
 		println ("Version is "+ logver)
 		def (int q, int r, int s) = logver.tokenize('.')
 		println ("Major_Version is " + q + " , " + "Minor_Version is " + r + " , " + "Patch_Version is " + s)
-		if (q > 1 && r >= 17){
+		if (q >= 2 && r >= 17){
 			println ("Log4j version is valid " + logver)
 		}		
 		else {
