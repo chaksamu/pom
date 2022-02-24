@@ -28,7 +28,7 @@
 		<version>1.16.1</version>
 	</dependency>
 	</dependencies>
-	<!--<dependencyManagement>
+	<dependencyManagement>
 		<dependencies>
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
@@ -43,5 +43,5 @@
 				<version>2.16.1</version>
 			</dependency>
 		</dependencies>
-	</dependencyManagement>-->
+	</dependencyManagement>
 </project>
