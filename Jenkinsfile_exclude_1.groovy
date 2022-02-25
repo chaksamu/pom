@@ -46,8 +46,21 @@ pipeline{
                           FindLog4jversion(k)
                         }
                     }
-			for ( l in './*.jar') {
-				println(l)
+		def cDir = new File(".");
+		def jarContens;
+		cDir.eachFileRecursive
+			{
+    				file -> if (file.name.endsWith(".jar")) 
+				{
+       					jarContens = "jar tvf $file".execute().text;
+       					jarContens.eachLine
+					{
+            					line -> if (line.contains('log4j'))
+						{
+                					println("Line is "+ $file.canonicalPath)
+            					}
+        				}
+    				}
 			}
                 }
             }
