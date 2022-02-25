@@ -17,8 +17,8 @@ def FindLog4jversion(i){
 	}
 }
 def FindLog4jVersionInsideJar(){
-	for (i in *.jar ){
-		println (i)
+	for (nam in *.jar ){
+		println (nam)
 	}
 }	
 
