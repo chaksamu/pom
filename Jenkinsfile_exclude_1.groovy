@@ -1,39 +1,39 @@
 def FindLog4jversion(i){
-	if (i.groupId.contains('log4j')){
-		def logver = i.version
-		println ("Version is "+ logver)
-		def (int q, int r, int s) = logver.tokenize('.')
-		println ("Major_Version is " + q + " , " + "Minor_Version is " + r + " , " + "Patch_Version is " + s)
-    		if (q == 1 ){
-     			println "Log4j Version is configured with lower exception. Please upgrade the log4j version" + logver
-    		}
-    		else if (q >= 2 && r >= 17){
-			println ("Log4j version is valid " + logver)
-		}		
-		else {
-			println ("Log4j version is not valid "+ logver)
-			error "Please modify the log4j version as per guidelines"
-		} 
-	}
+    if (i.groupId.contains('log4j')){
+        def logver = i.version
+        println ("Version is "+ logver)
+        def (int q, int r, int s) = logver.tokenize('.')
+        println ("Major_Version is " + q + " , " + "Minor_Version is " + r + " , " + "Patch_Version is " + s)
+            if (q == 1 ){
+                 println "Log4j Version is configured with lower exception. Please upgrade the log4j version" + logver
+            }
+            else if (q >= 2 && r >= 17){
+            println ("Log4j version is valid " + logver)
+        }        
+        else {
+            println ("Log4j version is not valid "+ logver)
+            error "Please modify the log4j version as per guidelines"
+        } 
+    }
 }
 
 def FindLog4jVersionCheckInsideJar(){
-	//def cDir = new File("./src/com/syniverse/devops/target")
-	def cDir = new File(".")
-	cDir.eachFileRecurse { file ->
-	if (file.name =~ /.*\.jar$/) {
-		println(file)
-		def jarContents = "jar tvf ${file}".execute().text;
-		jarContents.eachLine { line -> //println(line)
-			if (line.contains('log4j')) {
-				//println(line)
-				def logver = line.split("-")[-1]
-				println(logver)
-				FindLog4jversion(logver)				
-				}
-			}
-		}
-	}
+    //def cDir = new File("./src/com/syniverse/devops/target")
+    def cDir = new File(".")
+    cDir.eachFileRecurse { file ->
+    if (file.name =~ /.*\.jar$/) {
+        println(file)
+        def jarContents = "jar tvf ${file}".execute().text;
+        jarContents.eachLine { line -> //println(line)
+            if (line.contains('log4j')) {
+                //println(line)
+                def logver = line.split("-")[-1]
+                println(logver)
+                FindLog4jversion(logver)                
+                }
+            }
+        }
+    }
 }
 
 
@@ -65,20 +65,9 @@ pipeline{
                           FindLog4jversion(k)
                         }
                     }
-		def cDir = new File(".");
-		def jarContens;
-		cDir.eachFileRecursive{file -> 
-			if (file.name.endsWith(".jar")){
-				jarContens = "jar tvf $file".execute().text;
-       				jarContens.eachLine{line -> 
-					if (line.contains('log4j'))
-						{
-                					println("Line is "+ $file.canonicalPath)
-            					}
-        				}
-    				}
-			}
+                FindLog4jVersionCheckInsideJar()            
                 }
+                
             }
         }
     }
