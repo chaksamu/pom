@@ -65,7 +65,7 @@ pipeline{
                           FindLog4jversion(k)
                         }
                     }
-                FindLog4jVersionCheckInsideJar()            
+                FindLog4jVersionCheckInsideJar.call()            
                 }
                 
             }
