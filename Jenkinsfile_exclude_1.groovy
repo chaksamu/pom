@@ -46,7 +46,7 @@ pipeline{
                           FindLog4jversion(k)
                         }
                     }
-			for ( l in *.jar) {
+			for ( l in './*.jar') {
 				println(l)
 			}
                 }
