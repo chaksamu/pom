@@ -16,21 +16,24 @@ def FindLog4jversion(i){
 		} 
 	}
 }
-
-def FindLog4jVersionInsideJar(n){
+def FindLog4jVersionInsideJar(){
 	def cDir = new File(".");
 	def jarContents;
 	cDir.eachFileRecurse{file ->
-  	if (file.name =~ /.*\.jar$/)
-  	{
-    		jarContents = "jar tvf ${file}".execute().text;
-    		jarContents.eachLine{line ->
-      		if (line.contains(args[0])){
-        	print "*** found in ${file.canonicalPath}:";
-        	println line;
-      		}
-    	}
-}
+  		if (file.name =~ /.*\.jar$/)
+  		{
+			jarContents = "jar tvf ${file}".execute().text;
+    			jarContents.eachLine{line ->
+      			if (line.contains(args[0])){
+        			print "*** found in ${file.canonicalPath}:";
+			        println line;
+      			}
+    		}
+  	}
+    }
+}	
+
+
 pipeline{
     agent any
     stages{
@@ -59,6 +62,7 @@ pipeline{
                           FindLog4jversion(k)
                         }
                     }
+			FindLog4jVersionInsideJar()
                 }
             }
         }
