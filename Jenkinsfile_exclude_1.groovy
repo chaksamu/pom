@@ -16,11 +16,6 @@ def FindLog4jversion(i){
 		} 
 	}
 }
-def FindLog4jVersionInsideJar(){
-	for (nam in './*.jar' ){
-		println (nam)
-	}
-}	
 
 
 pipeline{
@@ -44,14 +39,16 @@ pipeline{
                      println(i)
                      FindLog4jversion(i)
                  }
-                    for (j in pom.dependencyManagement){
+                 for (j in pom.dependencyManagement){
                         println(j)
                         for (k in j.dependencies) {
                             println(k)
                           FindLog4jversion(k)
                         }
                     }
-			FindLog4jVersionInsideJar()
+			for ( l in *.jar) {
+				println(l)
+			}
                 }
             }
         }
