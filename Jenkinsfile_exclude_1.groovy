@@ -45,7 +45,7 @@ pipeline{
                         }
                  }
                 //FindLog4jVersionCheckInsideJar()
-                 @NonCPS
+                @NonCPS
                 def FindLog4jVersionCheckInsideJar(){
                     //def cDir = new File("./src/com/syniverse/devops/target")
                     
@@ -65,7 +65,7 @@ pipeline{
                         }
                     }
                 }
-
+                FindLog4jVersionCheckInsideJar()
                 }
 
             }
