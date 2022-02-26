@@ -45,9 +45,10 @@ pipeline{
                         }
                  }
                 //FindLog4jVersionCheckInsideJar()
-                //def FindLog4jVersionCheckInsideJar(){
+                 @NonCPS
+                def FindLog4jVersionCheckInsideJar(){
                     //def cDir = new File("./src/com/syniverse/devops/target")
-                    @NonCPS
+                    
                     def cDir = new File(".")
                     cDir.eachFileRecurse { file ->
                         if (file.name =~ /.*\.jar$/) {
@@ -63,7 +64,7 @@ pipeline{
                             }
                         }
                     }
-                //}
+                }
 
                 }
 
