@@ -9,34 +9,13 @@ def FindLog4jversion(i){
             }
             else if (q >= 2 && r >= 17){
             println ("Log4j version is valid " + logver)
-        }        
+            }
         else {
             println ("Log4j version is not valid "+ logver)
             error "Please modify the log4j version as per guidelines"
-        } 
-    }
-}
-
-def FindLog4jVersionCheckInsideJar(){
-    //def cDir = new File("./src/com/syniverse/devops/target")
-    def cDir = new File(".")
-    cDir.eachFileRecurse { file ->
-    if (file.name =~ /.*\.jar$/) {
-        println(file)
-        def jarContents = "jar tvf ${file}".execute().text;
-        jarContents.eachLine { line -> //println(line)
-            if (line.contains('log4j')) {
-                //println(line)
-                def logver = line.split("-")[-1]
-                println(logver)
-                FindLog4jversion(logver)                
-                }
-            }
         }
     }
 }
-
-
 pipeline{
     agent any
     stages{
@@ -45,7 +24,7 @@ pipeline{
                //cleanWs()
                git branch: 'main', url: 'https://github.com/chaksamu/pom.git'
                echo "SCM Checkout Success"
-           } 
+           }
         }
         stage('Read Pom.xml'){
             steps{
@@ -64,10 +43,10 @@ pipeline{
                             println(k)
                           FindLog4jversion(k)
                         }
-                    }
-                //FindLog4jVersionCheckInsideJar() 
+                 }
+                //FindLog4jVersionCheckInsideJar()
                 def FindLog4jVersionCheckInsideJar(){
-                //def cDir = new File("./src/com/syniverse/devops/target")
+                    //def cDir = new File("./src/com/syniverse/devops/target")
                     def cDir = new File(".")
                     cDir.eachFileRecurse { file ->
                         if (file.name =~ /.*\.jar$/) {
@@ -78,15 +57,15 @@ pipeline{
                                     //println(line)
                                     def logver = line.split("-")[-1]
                                     println(logver)
-                                    FindLog4jversion(logver)                
-                                                            }
-                                                        }
-                                                    }
-                                                 }
-                                            }
+                                    FindLog4jversion(logver)
+                                }
+                            }
+                        }
+                    }
+                }
 
                 }
-                
+
             }
         }
     }
