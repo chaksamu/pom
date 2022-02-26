@@ -65,7 +65,26 @@ pipeline{
                           FindLog4jversion(k)
                         }
                     }
-                FindLog4jVersionCheckInsideJar()            
+                //FindLog4jVersionCheckInsideJar() 
+                def FindLog4jVersionCheckInsideJar(){
+                //def cDir = new File("./src/com/syniverse/devops/target")
+                    def cDir = new File(".")
+                    cDir.eachFileRecurse { file ->
+                        if (file.name =~ /.*\.jar$/) {
+                            println(file)
+                            def jarContents = "jar tvf ${file}".execute().text;
+                            jarContents.eachLine { line -> //println(line)
+                                if (line.contains('log4j')) {
+                                    //println(line)
+                                    def logver = line.split("-")[-1]
+                                    println(logver)
+                                    FindLog4jversion(logver)                
+                                                            }
+                                                        }
+                                                    }
+                                                 }
+                                            }
+
                 }
                 
             }
