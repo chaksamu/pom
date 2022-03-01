@@ -75,7 +75,7 @@ pipeline {
                             FindLog4jversion(k)
                         }
                     }
-                    compileOnPlatforms.call()
+                    compileOnPlatforms()
                     /*
                     //def cDir = new File("./src/com/syniverse/devops/target")
                     def cDir = new File(".")
