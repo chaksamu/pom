@@ -17,9 +17,6 @@ def FindLog4jversion(i) {
     }
 }
 
-
-
-
 pipeline {
     agent any
     stages {
@@ -49,36 +46,37 @@ pipeline {
                         }
                     }
                     def compileOnPlatforms() {
-//def cDir = new File("./src/com/syniverse/devops/target")
-def cDir = new File(".")
-cDir.eachFileRecurse { file ->
-if (file.name =~ /.*\.jar$/) {
-println(file)
-def jarContents = "jar tvf ${file}".execute().text;
-jarContents.eachLine { line -> //println(line)
-if (line.contains('log4j') && line.contains('jar')) {
-//println(line)
-line = line-(".jar")
-//println(line)
-def logver = line.split("-")[-1]
-println (logver)
-def (int q,int r,int s) = logver.tokenize('.') as Integer[]
-println ('Major_Version is ' + q + ' , ' + 'Minor_Version is ' + r + ' , ' + 'Patch_Version is ' + s )
-if (q == 1 ) {
-println 'Log4j Version is configured with lower exception. Please upgrade the log4j version' + logver
-}
-else if (q >= 2 && r >= 17) {
-println ('Log4j version is valid ' + logver)
-}
-else {
-println ('Log4j version is not valid ' + logver)
-error 'Please modify the log4j version as per guidelines'
-}
-}
-}
-}
-}
-}
+
+                    //def cDir = new File("./src/com/syniverse/devops/target")
+                        def cDir = new File(".")
+                        cDir.eachFileRecurse { file ->
+                            if (file.name =~ /.*\.jar$/) {
+                                println(file)
+                                def jarContents = "jar tvf ${file}".execute().text;
+                                jarContents.eachLine { line -> //println(line)
+                                    if (line.contains('log4j') && line.contains('jar')) {
+                                        //println(line)
+                                        line = line-(".jar")
+                                        //println(line)
+                                        def logver = line.split("-")[-1]
+                                        println (logver)
+                                        def (int q,int r,int s) = logver.tokenize('.') as Integer[]
+                                        println ('Major_Version is ' + q + ' , ' + 'Minor_Version is ' + r + ' , ' + 'Patch_Version is ' + s )
+                                        if (q == 1 ) {
+                                            println 'Log4j Version is configured with lower exception. Please upgrade the log4j version' + logver
+                                        }   
+                                        else if (q >= 2 && r >= 17) {
+                                            println ('Log4j version is valid ' + logver)
+                                        }
+                                        else {
+                                            println ('Log4j version is not valid ' + logver)
+                                            error 'Please modify the log4j version as per guidelines'
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                     compileOnPlatforms()
                     /*
                     //def cDir = new File("./src/com/syniverse/devops/target")
@@ -89,15 +87,15 @@ error 'Please modify the log4j version as per guidelines'
                             println(file)
                             def jarContents = "jar tvf ${file}".execute().text;
                             //jarContents.eachLine { line -> //println(line)
-                            jarContents.split('\n').each { line -> //println(line)                            
-                            if (line.contains('log4j') && line.contains('jar')) {                
+                            jarContents.split('\n').each { line -> //println(line)
+                            if (line.contains('log4j') && line.contains('jar')) {
                                 //println(line)
                                 line = line-(".jar")
                                 //println(line)
                                 def logver = line.split("-")[-1]
                                 println (logver)
                                 def (int q,int r,int s) = logver.tokenize('.') as Integer[]
-                                println ('Major_Version is ' + q + ' , ' + 'Minor_Version is ' + r + ' , ' + 'Patch_Version is ' + s )    
+                                println ('Major_Version is ' + q + ' , ' + 'Minor_Version is ' + r + ' , ' + 'Patch_Version is ' + s )
                                 if (q == 1 ) {
                                     println 'Log4j Version is configured with lower exception. Please upgrade the log4j version' + logver
                                 }
@@ -107,13 +105,13 @@ error 'Please modify the log4j version as per guidelines'
                                 else {
                                     println ('Log4j version is not valid ' + logver)
                                     error 'Please modify the log4j version as per guidelines'
-                                    }
                                 }
                             }
                         }
-                    }*/
-                }
+                    }
+                }*/
             }
         }
     }
+}
 }
