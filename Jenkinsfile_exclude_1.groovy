@@ -27,7 +27,8 @@ def compileOnPlatforms() {
         if (file.name =~ /.*\.jar$/) {
             println(file)
             def jarContents = "jar tvf ${file}".execute().text
-            jarContents.each { line -> //println(line)
+            jarContents.eachLine(line) { 
+                //line -> //println(line)
                 if (line.contains('log4j') && line.contains('jar')) {
                     //println(line)
                     line = line - (".jar")
