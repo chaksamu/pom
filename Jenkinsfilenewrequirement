@@ -33,7 +33,7 @@ def compileOnPlatforms(cDir) {
                     def logver = line.split('-')[-1]
                     println (logver)
                     def (int q,int r,int s) = logver.tokenize('.') as Integer[]
-                    println ('Major_Version is ' + q + ' , ' + 'Minor_Version is ' + r + ' , ' + 'Patch_Version is ' + s )
+                    //println ('Major_Version is ' + q + ' , ' + 'Minor_Version is ' + r + ' , ' + 'Patch_Version is ' + s )
                     if (q == 1 ) {
                         println 'Log4j Version is configured with lower exception. Please upgrade the log4j version' + logver
                     }
