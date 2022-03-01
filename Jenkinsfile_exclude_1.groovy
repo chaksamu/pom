@@ -17,16 +17,17 @@ def FindLog4jversion(i) {
     }
 }
 
-@NonCPS
+
 def compileOnPlatforms() {
     //def cDir = new File("./src/com/syniverse/devops/target")
+    @NonCPS
     def cDir = new File('.')    
     cDir.eachFileRecurse(file) { 
         //file ->
         if (file.name =~ /.*\.jar$/) {
             println(file)
             def jarContents = "jar tvf ${file}".execute().text
-            jarContents.eachLine { line -> //println(line)
+            jarContents.each { line -> //println(line)
                 if (line.contains('log4j') && line.contains('jar')) {
                     //println(line)
                     line = line - (".jar")
