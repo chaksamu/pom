@@ -75,6 +75,7 @@ pipeline {
                             FindLog4jversion(k)
                         }
                     }
+                    @NonCPS
                     compileOnPlatforms()
                     /*
                     //def cDir = new File("./src/com/syniverse/devops/target")
