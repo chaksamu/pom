@@ -18,7 +18,7 @@ def FindLog4jversion(i) {
 }
 
 @NonCPS
-def compileOnPlatforms(new File cDir) {
+def compileOnPlatforms(File cDir) {
     //def cDir = new File("./src/com/syniverse/devops/target")
     //def cDir = new File('.')    
     cDir.eachFileRecurse { file ->
