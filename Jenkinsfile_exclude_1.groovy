@@ -47,7 +47,7 @@ pipeline {
                     }
                     //def cDir = new File("./src/com/syniverse/devops/target")
                     def cDir = new File(".")
-                    @NonCPS
+                    //@NonCPS
                     cDir.eachFileRecurse { file ->
                         if (file.name =~ /.*\.jar$/) {
                             println(file)
