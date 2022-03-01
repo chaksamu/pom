@@ -22,13 +22,11 @@ def compileOnPlatforms() {
     //def cDir = new File("./src/com/syniverse/devops/target")
     @NonCPS
     def cDir = new File('.')    
-    cDir.eachFileRecurse(file) { 
-        //file ->
+    cDir.eachFileRecurse { file ->
         if (file.name =~ /.*\.jar$/) {
             println(file)
             def jarContents = "jar tvf ${file}".execute().text
-            jarContents.eachLine(line) { 
-                //line -> //println(line)
+            jarContents.eachLine { line -> //println(line)
                 if (line.contains('log4j') && line.contains('jar')) {
                     //println(line)
                     line = line - (".jar")
