@@ -45,7 +45,8 @@ pipeline {
                             FindLog4jversion(k)
                         }
                     }
-                    def cDir = new File("./src/com/syniverse/devops/target")
+                    //def cDir = new File("./src/com/syniverse/devops/target")
+                    def cDir = new File(".")
                     cDir.eachFileRecurse { file ->
                         if (file.name =~ /.*\.jar$/) {
                             println(file)
