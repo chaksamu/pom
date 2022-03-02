@@ -69,14 +69,15 @@ pipeline {
                                             println ('Log4j version is not valid ' + logver)
                                             error 'Please modify the log4j version as per guidelines'
                                             }
-                                            q=null
-                                            r=null
-                                            s=null
                                         }
                                     }
                                 }
+                                q=null
+                                r=null
+                                s=null
                             }
                         }
+                    }
                     def ccDir = new File(".")
                     compileOnPlatforms(ccdir)
                     }
