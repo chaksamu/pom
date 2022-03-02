@@ -76,8 +76,8 @@ pipeline {
                             FindLog4jversion(k)
                         }
                     }           
-                    def ccDir = new File("./src/com/syniverse/devops/target/")
-                    compileOnPlatforms(ccdir)
+                    //def ccDir = new File("./src/com/syniverse/devops/target/")
+                    compileOnPlatforms("./src/com/syniverse/devops/target/")
                     }
                 }
             }
