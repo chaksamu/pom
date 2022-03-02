@@ -36,16 +36,19 @@ def compileOnPlatforms(cDir) {
                     println ('Major_Version is ' + q + ' , ' + 'Minor_Version is ' + r + ' , ' + 'Patch_Version is ' + s )
                     if (q == 1 ) {
                         println 'Log4j Version is configured with lower exception. Please upgrade the log4j version' + logver
-                        q=null;r=null;s=null
+                        
                     }
                                         else if (q >= 2 && r >= 17) {
                         println ('Log4j version is valid ' + logver)
-                        q=null;r=null;s=null                    
+                                            
                                         }
                                         else {
                         println ('Log4j version is not valid ' + logver)
                         error 'Please modify the log4j version as per guidelines'
                                         }
+                    q=null
+                    r=null
+                    s=null
                 }
                
             }
