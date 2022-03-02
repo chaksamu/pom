@@ -19,7 +19,7 @@ def FindLog4jversion(i) {
 }
 
 @NonCPS
-def compileOnPlatforms(new File cDir) {
+def compileOnPlatforms(cDir) {
 	cDir.eachFileRecurse(file){
 		if (file.name =~ /.*\.jar$/) {
 			println(file)
