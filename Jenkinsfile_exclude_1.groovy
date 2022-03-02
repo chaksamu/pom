@@ -17,7 +17,7 @@ def FindLog4jversion(i) {
     }
 }
 
-@NonCPS
+
 def compileOnPlatforms(cDir) {
     //def cDir = new File("./src/com/syniverse/devops/target")
     //def cDir = new File('.')    
@@ -44,7 +44,7 @@ def compileOnPlatforms(cDir) {
                         println ('Log4j version is not valid ' + logver)
                         error 'Please modify the log4j version as per guidelines'
                                         }
-                }
+                }q=null,r=null,s=null
             }
         }
     }
