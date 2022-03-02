@@ -47,7 +47,7 @@ pipeline {
                             FindLog4jversion(k)
                         }
                     }
-                    @NonCPS
+                  //  @NonCPS
 def compileOnPlatforms(cDir) {
 // def cDir = new File("./src/com/syniverse/devops/target")
 cDir.eachFileRecurse { file ->
