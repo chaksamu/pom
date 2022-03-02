@@ -47,76 +47,38 @@ pipeline {
                             FindLog4jversion(k)
                         }
                     }
-                  //  @NonCPS
-def compileOnPlatforms(cDir) {
-// def cDir = new File("./src/com/syniverse/devops/target")
-cDir.eachFileRecurse { file ->
-if (file.name =~ /.*\.jar$/) {
-println(file)
-def jarContents = "jar tvf ${file}".execute().text;
-jarContents.eachLine { line -> //println(line)
-if (line.contains('log4j') && line.contains('jar')) {
-//println(line)
-line = line-(".jar")
-//println(line)
-def logver = line.split("-")[-1]
-println (logver)
-def (int q,int r,int s) = logver.tokenize('.') as Integer[]
-println ('Major_Version is ' + q + ' , ' + 'Minor_Version is ' + r + ' , ' + 'Patch_Version is ' + s )
-if (q == 1 ) {
-println 'Log4j Version is configured with lower exception. Please upgrade the log4j version' + logver
-}
-else if (q >= 2 && r >= 17) {
-println ('Log4j version is valid ' + logver)
-}
-else {
-println ('Log4j version is not valid ' + logver)
-error 'Please modify the log4j version as per guidelines'
-}
-q=null
-r=null
-s=null
-}
-}
-}
-}
-}
-                    def ccDir = new File(".")
-                    compileOnPlatforms(ccdir)
-                    //def ccDir = new File(".")
-                    //compileOnPlatforms(ccDir)
-                    /*
-                    //def cDir = new File("./src/com/syniverse/devops/target")
-                    def cDir = new File(".")
-                    //@NonCPS
-                    cDir.eachFileRecurse { file ->
+                    def compileOnPlatforms(cDir) {
+                        cDir.eachFileRecurse { file ->
                         if (file.name =~ /.*\.jar$/) {
                             println(file)
                             def jarContents = "jar tvf ${file}".execute().text;
-                            //jarContents.eachLine { line -> //println(line)
-                            jarContents.split('\n').each { line -> //println(line)
+                            jarContents.eachLine { line -> 
                             if (line.contains('log4j') && line.contains('jar')) {
-                                //println(line)
                                 line = line-(".jar")
-                                //println(line)
                                 def logver = line.split("-")[-1]
                                 println (logver)
                                 def (int q,int r,int s) = logver.tokenize('.') as Integer[]
                                 println ('Major_Version is ' + q + ' , ' + 'Minor_Version is ' + r + ' , ' + 'Patch_Version is ' + s )
                                 if (q == 1 ) {
                                     println 'Log4j Version is configured with lower exception. Please upgrade the log4j version' + logver
-                                }
-                                else if (q >= 2 && r >= 17) {
-                                    println ('Log4j version is valid ' + logver)
-                                }
-                                else {
-                                    println ('Log4j version is not valid ' + logver)
-                                    error 'Please modify the log4j version as per guidelines'
+                                    }
+                                    else if (q >= 2 && r >= 17) {
+                                        println ('Log4j version is valid ' + logver)
+                                        }
+                                        else {
+                                            println ('Log4j version is not valid ' + logver)
+                                            error 'Please modify the log4j version as per guidelines'
+                                            }
+                                            q=null
+                                            r=null
+                                            s=null
+                                        }
+                                    }
                                 }
                             }
-                            }
-                            }
-                }*/
+                        }
+                    def ccDir = new File(".")
+                    compileOnPlatforms(ccdir)
                     }
                 }
             }
