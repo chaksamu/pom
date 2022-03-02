@@ -40,7 +40,7 @@ def compileOnPlatforms(cDir) {
                     }
                                         else if (q >= 2 && r >= 17) {
                         println ('Log4j version is valid ' + logver)
-                        q=null,r=null,s=null                    
+                        q=null;r=null;s=null                    
                                         }
                                         else {
                         println ('Log4j version is not valid ' + logver)
