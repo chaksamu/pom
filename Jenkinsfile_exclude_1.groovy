@@ -18,7 +18,7 @@ def FindLog4jversion(i) {
     }
 }
 
-@NonCPS
+//@NonCPS
 def compileOnPlatforms() {
 	def cDir = new File(".")
 	cDir.eachFileRecurse{file ->
