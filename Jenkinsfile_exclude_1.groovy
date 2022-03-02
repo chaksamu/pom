@@ -48,7 +48,7 @@ pipeline {
                         }
                     }
                     @NonCPS
-def compileOnPlatforms(new File cDir) {
+def compileOnPlatforms(cDir) {
 // def cDir = new File("./src/com/syniverse/devops/target")
 cDir.eachFileRecurse { file ->
 if (file.name =~ /.*\.jar$/) {
