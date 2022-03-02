@@ -79,7 +79,7 @@ pipeline {
                         }
                     
                     def ccDir = new File(".")
-                    compileOnPlatforms(ccdir)
+                    compileOnPlatforms.call(ccdir)
                     }
                 }
             }
