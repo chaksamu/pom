@@ -55,7 +55,7 @@ pipeline {
             stage('Log4j Version Check'){
                 steps{
                     script{
-                        def cDir = new File(".src/com/syniverse/devops/target/")
+                        def cDir = new File(".")
                         cDir.eachFileRecurse(FileType.FILES) { file ->
                         if (file.name =~ /.*\.jar$/) {
                             println(file)
