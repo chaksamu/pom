@@ -20,30 +20,6 @@ def FindLog4jversion(i) {
     }
 }
 
-def Findinsidelo4jver(filepath){
-def cDir = new File(filepath)
-cDir.eachFileRecurse(FileType.FILES) { file ->
-if (file.name =~ /.*\.jar$/) {
-println(file)
-def jarContents = "jar tvf ${file}".execute().text;
-jarContents.eachLine { line -> //println(line)
-if (line.contains('log4j') && line.contains('jar')) {
-//println(line)
-line = line-(".jar")
-//println(line)
-def logver = line.split("-")[-1]
-println (logver)
-def (int q,int r,int s) = logver.tokenize('.') as Integer[]
-println ('Major_Version is ' + q + ' , ' + 'Minor_Version is ' + r + ' , ' + 'Patch_Version is ' + s )
-checkversion(q,r,s)
-
-
-
-}
-}
-}
-}
-}
 
 pipeline {
     agent any
@@ -73,7 +49,31 @@ pipeline {
                             FindLog4jversion(k)
                         }
                     }           
-                    Findinsidelo4jver("./src/com/syniverse/devops/target")
+                    }
+                }
+            }
+            stage('Log4j Version Check'){
+                steps{
+                    script{
+                        def cDir = new File("./src/com/syniverse/devops/target")
+                        cDir.eachFileRecurse(FileType.FILES) { file ->
+                        if (file.name =~ /.*\.jar$/) {
+                            println(file)
+                            def jarContents = "jar tvf ${file}".execute().text;
+                            jarContents.eachLine { line -> //println(line)
+                            if (line.contains('log4j') && line.contains('jar')) {
+                                //println(line)
+                                line = line-(".jar")
+                                //println(line)
+                                def logver = line.split("-")[-1]
+                                println (logver)
+                                def (int q,int r,int s) = logver.tokenize('.') as Integer[]
+                                println ('Major_Version is ' + q + ' , ' + 'Minor_Version is ' + r + ' , ' + 'Patch_Version is ' + s )
+                                checkversion(q,r,s)
+                            }
+                        }
+                        }
+                    }
                     }
                 }
             }
