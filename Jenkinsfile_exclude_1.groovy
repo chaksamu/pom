@@ -18,39 +18,40 @@ def FindLog4jversion(i) {
     }
 }
 
-//@NonCPS
-def compileOnPlatforms() {
-	def cDir = new File(".")
-	cDir.eachFileRecurse{file ->
-		if (file.name =~ /.*\.jar$/) {
-			println(file)
-			def jarContents = "jar tvf ${file}".execute().text;
-			jarContents.eachLine{line ->
-				if (line.contains('log4j') && line.contains('jar')) {
-					line = line-(".jar")
-					def logver = line.split("-")[-1]
-					println (logver)
-					//def (int q,int r,int s) = logver.tokenize('.') as Integer[]
-					def (z) = logver.tokenize('.') as Integer[]
-					def int q = z.get(0)
-					def int r = z.get(1)
-					def int s = z.get(2)
-					println ('Major_Version is ' + q + ' , ' + 'Minor_Version is ' + r + ' , ' + 'Patch_Version is ' + s )
-					if (q == 1 ) {
-						println 'Log4j Version is configured with lower exception. Please upgrade the log4j version' + logver
-						}
-						else if (q >= 2 && r >= 17) {
-							println ('Log4j version is valid ' + logver)
-							}
-							else {
-								println ('Log4j version is not valid ' + logver)
-								error 'Please modify the log4j version as per guidelines'
-								}
-							}
-						}
-					}
-				}
-			}
+@NonCPS
+def compileOnPlatforms(new File cDir) {
+// def cDir = new File("./src/com/syniverse/devops/target")
+cDir.eachFileRecurse(file){
+if (file.name =~ /.*\.jar$/) {
+println(file)
+def jarContents = "jar tvf ${file}".execute().text;
+jarContents.eachLine(line) { //println(line)
+if (line.contains('log4j') && line.contains('jar')) {
+//println(line)
+line = line-(".jar")
+//println(line)
+def logver = line.split("-")[-1]
+println (logver)
+def (int q,int r,int s) = logver.tokenize('.') as Integer[]
+println ('Major_Version is ' + q + ' , ' + 'Minor_Version is ' + r + ' , ' + 'Patch_Version is ' + s )
+if (q == 1 ) {
+println 'Log4j Version is configured with lower exception. Please upgrade the log4j version' + logver
+}
+else if (q >= 2 && r >= 17) {
+println ('Log4j version is valid ' + logver)
+}
+else {
+println ('Log4j version is not valid ' + logver)
+error 'Please modify the log4j version as per guidelines'
+}
+q=null
+r=null
+s=null
+}
+}
+}
+}
+}
 
 pipeline {
     agent any
@@ -80,8 +81,8 @@ pipeline {
                             FindLog4jversion(k)
                         }
                     }           
-                    //def ccDir = new File("./src/com/syniverse/devops/target")
-                    compileOnPlatforms()
+                    def ccDir = new File("./src/com/syniverse/devops/target")
+                    compileOnPlatforms(ccDir)
                     }
                 }
             }
