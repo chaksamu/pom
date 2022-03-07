@@ -81,7 +81,7 @@ pipeline {
             stage('Log4j Check Version In Final Jar'){
                 steps{
                     script{
-                        def cDir = new File('.')
+                        def cDir = new File(".")
                         println(cDir)
                         
                     }
