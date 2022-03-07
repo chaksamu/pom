@@ -87,8 +87,9 @@ pipeline {
                      def jarFiles = null
                      sh """
                          ls $cDir/*.jar > jarFiles
-                         println(jarFiles)
+                         
                      """
+                     println(jarFiles)
                     //    
                     }
                 }
