@@ -82,8 +82,7 @@ pipeline {
                 steps{
                     script{
                         def cDir = new File('.')
-                        for file in cDir{
-                            println(file)
+                        println(cDir)
                         }
                     }
                 }
