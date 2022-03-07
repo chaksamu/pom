@@ -53,7 +53,7 @@ pipeline {
                     }
                 }
             }
-            stage('Log4j Version Check'){
+            /*stage('Log4j Version Check'){
                 steps{
                     script{
                      
@@ -78,15 +78,20 @@ pipeline {
                     }
                     }
                 }
-            }
-            /*stage('Log4j Check Version In Final Jar'){
+            }*/
+            stage('Log4j Check Version In Final Jar'){
                 steps{
                     script{
-                        def cDir = new File("./src")
-                        println(cDir)
-                        
+                    //
+                     def cDir = "./src/com/syniverse/devops/target"   
+                     def JAR_FILES = ".jar_files_list"
+                     sh """
+                     ls $cDir/*.jar > ${JAR_FILES}
+                     println(JAR_FILES)
+                     """
+                    //    
                     }
                 }
-            }*/
+            }
         }
     }
