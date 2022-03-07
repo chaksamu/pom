@@ -84,10 +84,10 @@ pipeline {
                     script{
                     //
                      def cDir = "./src/com/syniverse/devops/target"   
-                     def JAR_FILES = ".jar_files_list"
+                     def jarFiles = null
                      sh """
-                         ls $cDir/*.jar > ${JAR_FILES}
-                         println(JAR_FILES)
+                         ls $cDir/*.jar > jarFiles
+                         println(jarFiles)
                      """
                     //    
                     }
