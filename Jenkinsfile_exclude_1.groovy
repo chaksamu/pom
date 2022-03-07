@@ -52,7 +52,7 @@ pipeline {
                     }
                 }
             }
-            stage('Log4j Version Check'){
+            /*stage('Log4j Version Check'){
                 steps{
                     script{
                         @NonCPS
@@ -75,6 +75,16 @@ pipeline {
                         }
                         }
                     }
+                    }
+                }
+            }*/
+            stage('Log4j Check Version In Final Jar'){
+                steps{
+                    script{
+                        def cDir = new File('.')
+                        for file in cDir{
+                            println(file)
+                        }
                     }
                 }
             }
