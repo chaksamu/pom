@@ -86,8 +86,8 @@ pipeline {
                      def cDir = "./src/com/syniverse/devops/target"   
                      def JAR_FILES = ".jar_files_list"
                      sh """
-                     ls $cDir/*.jar > ${JAR_FILES}
-                     println(JAR_FILES)
+                         ls $cDir/*.jar > ${JAR_FILES}
+                         println(JAR_FILES)
                      """
                     //    
                     }
