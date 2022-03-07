@@ -91,7 +91,7 @@ pipeline {
                          cat ${jarFiles}
                      """
                      println(jarFiles)
-                     def finenames = readFile(jarFiles)
+                     def filenames = readFile(jarFiles)
                         for (file in filenames){
                             println(file)
                         }
