@@ -91,7 +91,7 @@ pipeline {
                          cat ${jarFiles}
                      """
                      println(jarFiles)
-                     for file in jarFiles{
+                     for (file in jarFiles){
                          println(file)
                         }
                         
