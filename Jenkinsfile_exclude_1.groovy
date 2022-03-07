@@ -56,7 +56,7 @@ pipeline {
             stage('Log4j Version Check'){
                 steps{
                     script{
-                        @NonCPS
+                     
                         def cDir = new File(".")
                         cDir.eachFileRecurse(FileType.FILES) { file ->
                         if (file.name =~ /.*\.jar$/) {
