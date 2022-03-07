@@ -1,5 +1,6 @@
 import com.cloudbees.groovy.cps.NonCPS
 import groovy.io.FileType
+import static groovy.io.FileType.FILES
 
 def FindLog4jversion(i) {
     if (i.groupId.contains('log4j')) {
@@ -52,7 +53,7 @@ pipeline {
                     }
                 }
             }
-            /*stage('Log4j Version Check'){
+            stage('Log4j Version Check'){
                 steps{
                     script{
                         @NonCPS
@@ -77,8 +78,8 @@ pipeline {
                     }
                     }
                 }
-            }*/
-            stage('Log4j Check Version In Final Jar'){
+            }
+            /*stage('Log4j Check Version In Final Jar'){
                 steps{
                     script{
                         def cDir = new File("./src")
@@ -86,6 +87,6 @@ pipeline {
                         
                     }
                 }
-            }
+            }*/
         }
     }
