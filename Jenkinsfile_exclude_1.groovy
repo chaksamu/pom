@@ -90,8 +90,8 @@ pipeline {
                          ls $cDir/*.jar > ${jarFiles}
                          cat ${jarFiles}
                      """
-                     println(jarFiles)
-                     for (file in $jarFiles){
+                     println(jarfileslist)
+                     for (file in jarfileslist){
                          println(file)
                         }
                         
