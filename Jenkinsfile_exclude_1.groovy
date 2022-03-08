@@ -82,59 +82,41 @@ pipeline {
             stage('Log4j Check Version In Final Jar'){
                 steps{
                     script{
-                    //
-                     List Logfile =[]
-
-
-
-
-def cDir = new File("./src/com/syniverse/devops/target")
-cDir.eachFileRecurse(FileType.FILES) { file ->
-if (file.name =~ /.*\.jar$/) {
-Logfile.add(file);
-}
-
-
-
-}
-
-
-
-getVersion(Logfile);
-
-
-
-@NonCPS
-def getVersion(Logfile){
-for (String file : Logfile){
-try {
-if (file.name =~ /.*\.jar$/) {
-println(file)
-def jarContents = "jar tvf ${file}".execute().text;
-jarContents.eachLine { line -> //println(line)
-if (line.contains('log4j') && line.contains('jar')) {
-//println(line)
-line = line-(".jar")
-//println(line)
-def logver = line.split("-")[-1]
-println (logver)
-def (int q,int r,int s) = logver.tokenize('.') as Integer[]
-println ('Major_Version is ' + q + ' , ' + 'Minor_Version is ' + r + ' , ' + 'Patch_Version is ' + s )
-checkversion(q,r,s)
-
-
-
-}
-}
-}
-}
-finally {
-echo file
-}
-}
-}
-
-                        
+                        //
+                        List Logfile =[]
+                        def cDir = new File("./src/com/syniverse/devops/target")
+                        cDir.eachFileRecurse(FileType.FILES) { file ->
+                            if (file.name =~ /.*\.jar$/) {
+                                Logfile.add(file);
+                                }
+                            }
+                        getVersion(Logfile);
+                        @NonCPS
+                        def getVersion(Logfile){
+                            for (String file : Logfile){
+                                try {
+                                    if (file.name =~ /.*\.jar$/) {
+                                        println(file)
+                                        def jarContents = "jar tvf ${file}".execute().text;
+                                        jarContents.eachLine { line -> //println(line)
+                                            if (line.contains('log4j') && line.contains('jar')) {
+                                                //println(line)
+                                                line = line-(".jar")
+                                                //println(line)
+                                                def logver = line.split("-")[-1]
+                                                println (logver)
+                                                def (int q,int r,int s) = logver.tokenize('.') as Integer[]
+                                                println ('Major_Version is ' + q + ' , ' + 'Minor_Version is ' + r + ' , ' + 'Patch_Version is ' + s )
+                                                checkversion(q,r,s)
+                                            }
+                                        }
+                                    }
+                                }
+                                finally {
+                                    echo file
+                                }
+                            }
+                        }                        
                     //    
                     }
                 }
