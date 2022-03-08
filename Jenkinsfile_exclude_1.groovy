@@ -83,7 +83,7 @@ pipeline {
                 steps{
                     script{
                         //
-                        @NonCPS
+                        //@NonCPS
                         def testorigin(){
                             test()
                         }
