@@ -83,10 +83,6 @@ pipeline {
                 steps{
                     script{
                         //
-                        //@NonCPS
-                        def testorigin(){
-                            test()
-                        }
                         def test(){
                             def cDir = new File("./src/com/syniverse/devops/target")
                             cDir.eachFileRecurse(FileType.FILES) { file ->
@@ -107,6 +103,10 @@ pipeline {
                                     }
                                 }
                             }
+                        }
+                        @NonCPS
+                        def testorigin(){
+                            test()
                         }
                     //    
                     }
